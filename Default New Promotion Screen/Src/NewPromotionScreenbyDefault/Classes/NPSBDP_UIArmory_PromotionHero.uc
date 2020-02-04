@@ -687,9 +687,10 @@ function PreviewAbility(int Rank, int Branch)
 				// Start Issue #128
 				foreach AbilityTemplate.PrerequisiteAbilities(PrereqAbilityName)
 				{
-					if (InStr(PrereqAbilityName, "NOT_") == 0)
+					if (InStr(PrereqAbilityName, class'UIArmory_PromotionHero'.const.MutuallyExclusivePrefix) == 0)
 					{
-						PreviousAbilityTemplate = AbilityTemplateManager.FindAbilityTemplate(name(Repl(PrereqAbilityName, "NOT_", "")));
+						PreviousAbilityTemplate = AbilityTemplateManager.FindAbilityTemplate(
+							name(Mid(PrereqAbilityName, Len(class'UIArmory_PromotionHero'.const.MutuallyExclusivePrefix))));
 						if (PreviousAbilityTemplate != none )
 						{
 							if (MutuallyExclusiveNames != "")
